@@ -1,0 +1,13 @@
+Steps to install 'Online MCQ Test' :
+
+1. Install WAMP Server on your network server
+2. Copy the 'online_mcq.rar' to 'www' within the WAMP server's installed location
+3. Extract the 'online_mcq.rar' using winrar 
+4. Import the 'anssy.sql' file from the 'db_backup' folder into your SQL software (wamp>www>online_mcq>db_backup>19042017>anssy.sql)
+5. Open your browser (recommended Google Chrome) and enter 'localhost/online_mcq/' in your URL
+6. Select user type : Admin
+   User ID : AD17CO001
+   Password : Qwerty1234!
+
+   That's it :)   
+
