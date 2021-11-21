@@ -1,0 +1,192 @@
+<?php
+	include('conn/connection.php');
+	checkuserTeacher();
+?>
+<html>
+<head>
+<title>CREATE QUESTION</TITLE>
+<style>
+ul {
+    
+    position: fixed;
+    left : 0;
+    top: 0;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 10px;
+padding-right : 10px;
+padding-top : 10px;
+
+   
+   background: #503048;
+opacity : 0.9;
+ 
+}
+
+li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+body {
+background : url("images/wood1.jpg") ;
+background-size : 100% 100%;
+
+padding-left : 0px;
+
+}
+
+
+.div1 {
+
+
+width : 750px ;
+margin-top : 200px ;
+margin-bottom : 60px ;
+margin-left : 350px;
+
+    background-color: #f2f2f2;
+    padding: 40px;
+
+
+}
+
+.br1 {
+clear = left ;
+}
+
+
+input[type=text],select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size : 20px;
+}
+
+
+input[type=text].ans {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size : 20px;
+float : left ;
+}
+
+
+
+input[type=submit] , input[type=reset] {
+float : right ;
+    width: 30%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-left:  10px;
+font-size : 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<ul>
+
+  <li><img src="images/mcq.png" width="80" height="80"></li>
+  <li><font size="7">CREATE QUESTION</font></li>
+
+
+</ul>
+
+
+
+
+<div class = "div1">
+
+<div>
+<form id="myForm" action="addqb.php" method="post">
+
+<font face="verdana" color="black" size = "4.5"> <b> Select Subject</b> </font> <br>
+    <select id="subject" name="subject" required>
+		<?php
+                	// Query For getting the Subject List which are active
+					$sql_get_sub_list	= " SELECT * FROM `sub_registration` ";
+					$res_get_sub_list	= mysqli_query($db_con, $sql_get_sub_list) or die(mysqli_error($db_con));
+					$num_get_sub_list	= mysqli_num_rows($res_get_sub_list);
+					
+					if($num_get_sub_list != 0)
+					{
+						?>
+						<option value="">Select The Subject</option>
+                        <?php
+						while($row_get_sub_list = mysqli_fetch_array($res_get_sub_list))
+						{
+							?>
+							<option value="<?php echo $row_get_sub_list['sub_code']; ?>">
+                            	<?php echo ucwords($row_get_sub_list['sub_name']); ?>
+                            </option>
+							<?php	
+						}
+					}
+					else
+					{
+						?>
+						<option value="">No Data Found</option>
+						<?php
+					}
+				?>
+    </select><br><br>
+  <font face="verdana" color="black" size = "4.5"><b> Question </b></font><br>
+    <input type="text" id="question" name="question" required><br><br>
+
+  <font face="verdana" color="black" size = "4.5"><b> Options </b></font><br>
+    <input type="text" class="ans" name="a" placeholder="Option A" required>
+  <input type="text" class="ans" name="b" placeholder="Option B" required>
+    <br class="br1"><br class="br1">
+
+    <input type="text" class="ans" name="c" placeholder="Option C" required>
+  <input type="text" class="ans" name="d" placeholder="Option D" required><br class="br1"><br class="br1"><br class="br1"><br class="br1"><br class="br1"><br class="br1">
+ <font face="verdana" color="black" size = "4.5"><b>Correct Option </b></font> <br>
+    <select id="correctans" name="correctans" required>
+      <option value="a">Option A</option>
+      <option value="b">Option B</option>
+      <option value="c">Option C</option>
+      <option value="d">Option D</option>
+    </select><br><br>
+
+ 
+  
+<!--<input type="reset" value="NEXT">-->
+ <input type="submit" name="sub" id="sub" value="SAVE">
+
+<br>
+  </form>
+</div>
+</div>
+
+
+</body>
+</html>
